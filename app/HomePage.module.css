@@ -1,0 +1,146 @@
+.main {
+  color: #1a1a1a;
+  font-family: Arial, sans-serif;
+}
+
+.heroSection {
+  margin-top: 5rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stepsSection {
+  padding: 5rem 2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stepsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.magicCard {
+  border-radius: 1rem;
+  padding: 1rem;
+  min-height: 180px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.gtmSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 3rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .gtmSection {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.gtmText {
+  flex: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .gtmText {
+    text-align: left;
+  }
+}
+
+.gtmHeading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gtmHeading {
+    font-size: 3rem;
+  }
+}
+
+.gtmParagraph {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.gtmImage {
+  flex: 1;
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.reviewsSection {
+  margin: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.reviewCard {
+  width: 16rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: rgba(250,250,250,0.5);
+  transition: background 0.3s;
+}
+
+.reviewCard:hover {
+  background-color: rgba(250,250,250,0.7);
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reviewName {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.reviewUsername {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.reviewBody {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.faqSection {
+  margin: 5rem 2rem;
+  max-width: 1200px;
+}

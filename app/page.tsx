@@ -1,65 +1,131 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+
+import VantaFog from "./components/VantaFog";
+import { AuroraText } from "./components/magicui/aurora-text";
+import { ShimmerButton } from "./components/magicui/shimmer-button";
+import { MagicCard } from "./components/magicui/magic-card";
+import { Marquee } from "./components/magicui/marquee";
+import { CardContent, CardHeader } from "./components/ui/card";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./components/ui/accordion";
+
+import styles from "./HomePage.module.css";
+
+const profile = "/profile.jpg";
+
+const reviews = [
+  { name: "Arjun Malhotra", username: "@arjun_founder", body: "SOW Generator helped me save so much time preparing contracts..." },
+  { name: "Neha Gupta", username: "@neha_g", body: "The AI-driven templates were precise and professional..." },
+  { name: "Vikram Rao", username: "@vikram_startup", body: "Instead of writing everything from scratch, I had a complete draft in minutes..." },
+  { name: "Sofia Khan", username: "@sofia_k", body: "We quickly customized the SOW for multiple clients, thanks to the AI suggestions..." },
+  { name: "Karan Patel", username: "@karanp_growth", body: "The workflow made client onboarding much smoother..." },
+  { name: "Emily Chen", username: "@emily_builds", body: "As a freelancer, I finally have professional SOWs without the legal headache..." },
+];
+
+const steps = [
+  { title: "Step 1: Enter Project Details", description: "Provide your project scope, deliverables, and timelines." },
+  { title: "Step 2: Define Roles & Responsibilities", description: "Specify who is responsible for each part of the project." },
+  { title: "Step 3: Set Milestones & Payment Terms", description: "Outline key milestones and payment schedules." },
+  { title: "Step 4: Review & Customize", description: "The AI generates a draft SOW which you can tweak." },
+  { title: "Step 5: Download & Share", description: "Get a polished SOW ready to send to clients." },
+];
+
+const ReviewCard = ({ name, username, body }: { name: string; username: string; body: string }) => (
+  <figure className={styles.reviewCard}>
+    <div className={styles.reviewHeader}>
+      <Image className="rounded-full" width={32} height={32} alt={name} src={profile} />
+      <div>
+        <figcaption className={styles.reviewName}>{name}</figcaption>
+        <p className={styles.reviewUsername}>{username}</p>
+      </div>
+    </div>
+    <blockquote className={styles.reviewBody}>{body}</blockquote>
+  </figure>
+);
 
 export default function Home() {
+  const { theme } = useTheme();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className={styles.main}>
+      <VantaFog />
+
+      {/* Hero Section */}
+       <section className={styles.heroSection}>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center md:text-left">
+          <AuroraText speed={0.5}>
+            Generate Your SOW Effortlessly
+          </AuroraText>
+        </h1>
+        <p className="text-lg mb-6 text-center md:text-left">
+          Let AI help you create professional Statements of Work in minutes.
+        </p>
+
+        <div className="flex justify-center md:justify-start">
+          <Link href="/generate-sow">
+            <ShimmerButton className="!bg-black !text-white">
+            <span>Build My SOW</span>
+          </ShimmerButton>
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+      {/* How It Works Section */}
+      <section className="pt-20 lg:pt-32 pb-10 px-4 md:px-36 mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-black dark:text-blue-500">How It Works</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {steps.map((step, idx) => (
+            <MagicCard
+              key={idx}
+              className="rounded-xl px-5 py-4 bg-white shadow-md border border-gray-300 dark:bg-gray-800 dark:border-gray-700 h-full"
+            >
+              <CardHeader className="p-0">
+                <h3 className="text-lg font-semibold text-black dark:text-white">{step.title}</h3>
+              </CardHeader>
+              <CardContent className="p-0 mt-2">
+                <p className="text-sm leading-snug text-gray-800 dark:text-gray-300">{step.description}</p>
+              </CardContent>
+            </MagicCard>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className={styles.reviewsSection}>
+        <Marquee pauseOnHover>
+          {reviews.slice(0, 3).map((review) => <ReviewCard key={review.username} {...review} />)}
+        </Marquee>
+        <Marquee reverse pauseOnHover>
+          {reviews.slice(3).map((review) => <ReviewCard key={review.username} {...review} />)}
+        </Marquee>
+      </section>
+
+      {/* FAQ Section */}
+      <section className={styles.faqSection}>
+        <h1 className="text-4xl font-bold mb-8">FAQ's</h1>
+        <Accordion type="single" collapsible defaultValue="item-1">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>What is the SOW Generator?</AccordionTrigger>
+            <AccordionContent>
+              It is an AI-powered tool that generates professional Statements of Work quickly, based on your project details.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Can I customize the generated SOW?</AccordionTrigger>
+            <AccordionContent>
+              Yes! The generated SOW can be edited to fit your specific project requirements.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it suitable for freelancers and agencies?</AccordionTrigger>
+            <AccordionContent>
+              Absolutely. The tool is designed for both individual freelancers and agencies handling multiple clients.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
+    </main>
   );
 }
